@@ -5,7 +5,7 @@ chcp 65001 >nul 2>&1
 
 set "GIF_ASCII_SECONDS=12"
 
-start "" "C:\36\assets\sound.mp3"
+start "" "C:\36\assets\song.mp3"
 
 set "GIF_ASCII_AUTO=C:\36\assets\animation.gif"
 
