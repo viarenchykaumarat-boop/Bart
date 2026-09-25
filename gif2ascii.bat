@@ -3,22 +3,11 @@ setlocal EnableExtensions
 title GIF to ASCII
 chcp 65001 >nul 2>&1
 
-REM ============================================================
-REM  CONFIG  (edit these; leave blank to keep the old behavior)
-REM ============================================================
-REM Seconds to play. 0 or blank = loop until you press Q.
 set "GIF_ASCII_SECONDS=12"
 
-REM Background sound file. Leave blank to disable.
-set "GIF_ASCII_SOUND=C:\36\assets\song.mp3"
+start "" "C:\36\assets\sound.mp3"
 
-REM Full path of a GIF to play automatically. Leave blank to
-REM prompt, or still pass a file as the first argument / drop it
-REM onto this .bat to override this path.
 set "GIF_ASCII_AUTO=C:\36\assets\animation.gif"
-REM Example:
-REM set "GIF_ASCII_AUTO=C:\Users\viare\Pictures\cool.gif"
-REM ============================================================
 
 set "GIF_ASCII_SELF=%~f0"
 set "GIF_ASCII_FILE="
@@ -228,17 +217,6 @@ catch {
   exit 1
 }
 finally {
-
-  if ($player) {
-    try {
-      $player.settings.setMode("loop", $false)
-      $player.controls.stop()
-      $player.close()
-      [void][Runtime.InteropServices.Marshal]::ReleaseComObject($player)
-    }
-    catch {}
-  }
-
   try { [Console]::CursorVisible = $true } catch { }
   try { [Console]::Write("$esc[0m") } catch { }
   if ($gfx) { $gfx.Dispose() }
